@@ -1,11 +1,11 @@
 import java.util.*;
 
-// 1. โครงสร้างโหนดสำหรับเก็บข้อมูลคนในกราฟ
+// 1. Nodeสำหรับเก็บข้อมูลคนในกราฟ
 class Person {
     String name;
     String age;
     List<Person> groupNeighbors = new ArrayList<>();  // เส้นเชื่อมเพื่อนในกลุ่ม
-    List<Person> randomNeighbors = new ArrayList<>(); // เส้นเชื่อมเพื่อนจากการสุ่ม
+    List<Person> randomNeighbors = new ArrayList<>(); // เส้นเชื่อมเพื่อนจากนอกกลุ่ม
     // คอนสตรัคเตอร์สำหรับสร้างโหนดใหม่
     public Person(String name, String age) {
         this.name = name;
