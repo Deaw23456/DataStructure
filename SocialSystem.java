@@ -3,11 +3,11 @@ import java.util.*;
 // 1. Nodeสำหรับเก็บข้อมูลคนในกราฟ
 class Person {
     String name;
-    String age;
+    Integer age;
     List<Person> groupNeighbors = new ArrayList<>();  // เส้นเชื่อมเพื่อนในกลุ่ม
     List<Person> randomNeighbors = new ArrayList<>(); // เส้นเชื่อมเพื่อนจากนอกกลุ่ม
     // คอนสตรัคเตอร์สำหรับสร้างโหนดใหม่
-    public Person(String name, String age) {
+    public Person(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
@@ -87,7 +87,7 @@ public class SocialSystem {
             for(Person f : p.randomNeighbors) friends.append(f.name).append(",");
             
             String friendStr = friends.length() > 0 ? friends.substring(0, friends.length()-1) : "None";
-            System.out.printf("| %s | %s | %s |\n", formatThai(p.name, 15), formatThai(p.age, 10), formatThai(friendStr, 40));
+            System.out.printf("| %s | %s | %s |\n", formatThai(p.name, 15), formatThai(p.age.toString(), 10), formatThai(friendStr, 40));
         }
         System.out.println(line);
     }
@@ -96,7 +96,7 @@ public class SocialSystem {
     System.out.print("ADD MEMBER NAME: "); String name = sc.nextLine();
     System.out.print("AGE: "); String age = sc.nextLine();
     
-    Person n = new Person(name, age);
+    Person n = new Person(name, Integer.parseInt(age));
     allNodes.put(name.toLowerCase(), n);
 
     // เชื่อมสมาชิกทุกคนในกลุ่ม
@@ -114,7 +114,7 @@ public class SocialSystem {
         System.out.print("ADD BY: "); String voucher = sc.nextLine().toLowerCase();
 
         if (allNodes.containsKey(voucher)) {
-            Person randomP = new Person(name, age);
+            Person randomP = new Person(name, Integer.parseInt(age));
             Person member = allNodes.get(voucher);
             randomP.addRandomFriend(member);
             allNodes.put(name.toLowerCase(), randomP);
